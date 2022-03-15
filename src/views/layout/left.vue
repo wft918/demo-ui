@@ -2,6 +2,7 @@
   <el-menu
     default-active="-"
     class="el-menu-vertical-demo"
+    unique-opened
   >
     <SubMenu v-for="menu in menus" :key="menu.id" :menu="menu" />
   </el-menu>

@@ -1,8 +1,8 @@
 import { createRouter, createWebHashHistory } from "vue-router"
 import pageRouter from './page'
 import viewsRouter from './views'
-import { clearLoginInfo } from '@/utils' 
-
+import { clearLoginInfo } from '@/utils'
+import { useIndexStore } from '../store'
 
 const router = createRouter({
   history: createWebHashHistory(),
@@ -14,6 +14,8 @@ router.beforeEach((to, from, next) => {
   if(token) {
     if(to.path == '/login') {
       clearLoginInfo()
+      const indexStore = useIndexStore()
+      indexStore.$reset()  // 重置 indexStore 状态
     }
     next()
   }else {

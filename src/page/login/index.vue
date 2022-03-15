@@ -53,7 +53,7 @@
 <script setup>
 import "@/utils/flexible";
 import { User, Lock, More } from "@element-plus/icons-vue";
-import { onMounted, reactive, ref } from "vue";
+import { onMounted, onUnmounted, reactive, ref } from "vue";
 import Sidentify from '@/components/sidentify/sidentify.vue'
 import { login } from '@/api/user'
 import { useRouter } from 'vue-router'
@@ -75,7 +75,18 @@ let identifyCodes = ref('123456789abcdefghjkmnpqrstuvwxyz')
 onMounted(() => {
   identifyCode.value = ''
   makeCode(identifyCodes.value, 4)
+  document.addEventListener('keydown', addEventOnkeyDown)
 })
+
+onUnmounted(() => {
+  document.removeEventListener('keydown', addEventOnkeyDown)
+})
+
+//  监听回车
+const addEventOnkeyDown = (event) => {
+  event = event || window.event
+  if(event.keyCode === 13) doSubmit()
+}
 
 // 点击验证码触发
 const changeCode = () => {

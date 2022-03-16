@@ -39,6 +39,7 @@
             </span>
             <template #dropdown>
               <el-dropdown-menu>
+                <el-dropdown-item @click="toIndex">进入前台</el-dropdown-item>
                 <el-dropdown-item @click="logoutHandle">退出</el-dropdown-item>
               </el-dropdown-menu>
             </template>
@@ -103,6 +104,12 @@ const logoutHandle = () => {
     })
   }).catch((err) => {})
 }
+
+// 跳转到index
+const toIndex = () => {
+  router.replace('/index')
+}
+
 
 // 浏览器改变触发
 const currentScreen = () => {

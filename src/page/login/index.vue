@@ -1,52 +1,50 @@
 <template>
   <div class="login">
     <div class="form-container">
-      <div>
-        <el-card class="box-card">
-          <div class="title">xxxxxxx管理系统</div>
-          <el-form :label-position="'right'" :model="inputForm" ref="inputFormRef">
-            <el-row>
-              <el-col :span="24">
-                <el-form-item prop="username" :rules="[{ required: true, message: '请输入用户名', trigger: 'blur' }]">
-                  <el-input v-model="inputForm.username" placeholder="请输入用户名">
-                    <template #prepend>
-                      <el-icon><User /></el-icon>
-                    </template>
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="24">
-                <el-form-item prop="password" :rules="[{ required: true, message: '请输入密码', trigger: 'blur' }]">
-                  <el-input type="password" v-model="inputForm.password" placeholder="请输入密码">
-                    <template #prepend>
-                      <el-icon><Lock /></el-icon>
-                    </template>
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="18">
-                <el-form-item prop="code" :rules="[{ validator: validateCode, trigger: 'blur' }]">
-                  <el-input v-model="inputForm.code" placeholder="请输入验证码">
-                    <template #prepend>
-                      <el-icon><More /></el-icon>
-                    </template>
-                  </el-input>
-                </el-form-item>
-              </el-col>
-              <el-col :span="6">
-                <div style="width: 100%;height: 100%;" @click="changeCode">
-                  <Sidentify :identifyCode="identifyCode" :contentWidth="110" />
-                </div>
-              </el-col>
-              <el-col :span="24">
-                <el-form-item>
-                  <el-button :loading="loading" style="width: 100%" type="success" @click="doSubmit">登录</el-button>
-                </el-form-item>
-              </el-col>
-            </el-row>
-          </el-form>
-        </el-card>
-      </div>
+      <!-- <el-card class="box-card"> -->
+        <div class="title">爱丽丝谋杀</div>
+        <el-form :label-position="'right'" :model="inputForm" ref="inputFormRef">
+          <el-row>
+            <el-col :span="24">
+              <el-form-item prop="username" :rules="[{ required: true, message: '请输入用户名', trigger: 'blur' }]">
+                <el-input v-model="inputForm.username" placeholder="请输入用户名">
+                  <template #prepend>
+                    <el-icon><User /></el-icon>
+                  </template>
+                </el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="24">
+              <el-form-item prop="password" :rules="[{ required: true, message: '请输入密码', trigger: 'blur' }]">
+                <el-input type="password" v-model="inputForm.password" placeholder="请输入密码">
+                  <template #prepend>
+                    <el-icon><Lock /></el-icon>
+                  </template>
+                </el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="18">
+              <el-form-item prop="code" :rules="[{ validator: validateCode, trigger: 'blur' }]">
+                <el-input v-model="inputForm.code" placeholder="请输入验证码">
+                  <template #prepend>
+                    <el-icon><More /></el-icon>
+                  </template>
+                </el-input>
+              </el-form-item>
+            </el-col>
+            <el-col :span="6">
+              <div style="width: 100%;height: 100%;" @click="changeCode">
+                <Sidentify :identifyCode="identifyCode" :contentWidth="100" />
+              </div>
+            </el-col>
+            <el-col :span="24">
+              <el-form-item>
+                <el-button :loading="loading" style="width: 100%" type="success" @click="doSubmit">登录</el-button>
+              </el-form-item>
+            </el-col>
+          </el-row>
+        </el-form>
+      <!-- </el-card> -->
     </div>
   </div>
 </template>
@@ -73,6 +71,9 @@ let identifyCode = ref('m6a8')
 let identifyCodes = ref('123456789abcdefghjkmnpqrstuvwxyz')
 
 onMounted(() => {
+  inputForm.username = ''
+  inputForm.password = ''
+  inputForm.code = ''
   identifyCode.value = ''
   makeCode(identifyCodes.value, 4)
   document.addEventListener('keydown', addEventOnkeyDown)
@@ -128,7 +129,7 @@ const doSubmit = () => {
           localStorage.setItem('_demo_token', data.data.token)
           localStorage.setItem('_user_name', data.data.username)
           setTimeout(() => {
-            router.replace('/')
+            router.replace('/index')
             loading.value = false
           },200)
         }
@@ -144,25 +145,22 @@ const doSubmit = () => {
 .login {
   width: 100%;
   height: 100%;
-  background-image: url("@/assets/img/login/login.png");
+  background-image: url("@/assets/img/login/login.jpg");
   background-size: 100% 100%;
   background-repeat: no-repeat;
   position: relative;
 }
 
 .form-container {
-  width: 2.6042rem;
-  height: 3.0208rem;
+  width: 2.0833rem;
+  height: 1.4896rem;
   position: absolute;
-  right: 1.974rem;
-  top: 0.7708rem;
-  display: flex;
-  align-items: center;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  /* display: flex;
+  align-items: center; */
   /* background-color: #f5f7fa; */
-}
-.form-container > div {
-  width: 80%;
-  margin: 0 auto;
 }
 
 .title {
@@ -172,5 +170,16 @@ const doSubmit = () => {
   color: #5b77c2;
   font-weight: 600;
   margin-bottom: .1042rem;
+}
+
+:deep(.el-input-group__prepend) {
+  background: transparent!important;
+}
+:deep(.el-input__inner) {
+  background: transparent!important;
+  color: yellow;
+}
+.el-icon {
+  color: blue;
 }
 </style>

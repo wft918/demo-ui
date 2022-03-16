@@ -32,10 +32,10 @@ let mainTabs = computed({
 watch(
   () => route.path,
   (to, from) => {
-    if(to !== '/home' && to !== '/login' && to !== '/cannot' && to !== '/register') {
+    if(to !== '/home' && to !== '/login' && to !== '/cannot' && to !== '/register' && to !== '/index') {
       mainTabs.value = to
     }
-    if(to !== '/login' && to !== '/cannot' && to !== '/register') currentPath.value = to
+    if(to !== '/login' && to !== '/cannot' && to !== '/register' && to !== '/index') currentPath.value = to
   },
   {
     deep: true,

@@ -16,5 +16,11 @@ export default [
     name: 'register',
     meta: { title: '注册' },
     component: () => import('@/page/register/index.vue')
+  },
+  {
+    path: '/index',
+    name: 'index',
+    meta: { title: '欢迎' },
+    component: () => import('@/page/index/index.vue')
   }
 ]

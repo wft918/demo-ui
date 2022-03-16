@@ -14,11 +14,11 @@
           <Breadcrumb />
         </div>
         <div class="main-pad">
-          <el-card class="box-card">
+          <!-- <el-card class="box-card"> -->
             <div class="main-content">
               <router-view></router-view>
             </div>
-          </el-card>
+          <!-- </el-card> -->
         </div>
       </div>
     </div>
@@ -81,5 +81,8 @@ const indexStore = useIndexStore()
     width: 100%;
     height: 100%;
     background-color: #fff;
+    -webkit-box-shadow:0 0 10px #0CC;
+    -moz-box-shadow:0 0 10px #0CC;
+    box-shadow:0 0 10px #0CC;
   }
 </style>
